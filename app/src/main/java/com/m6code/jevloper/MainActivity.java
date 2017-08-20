@@ -1,8 +1,11 @@
 package com.m6code.jevloper;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -44,6 +47,25 @@ public class MainActivity extends AppCompatActivity {
 
         UserAsyncTask userTask = new UserAsyncTask();
         userTask.execute(USER_DATA_REQUEST_URL);
+
+        userListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                // Get item position
+                User user = mAdapter.getItem(i);
+                // Create new intent to launchProfileDetails
+                Intent launchProfileDetails = new Intent(MainActivity.this,
+                        ProfileDetailsActivity.class);
+
+                // pass the username to the intent
+                launchProfileDetails.putExtra("username", user.getUsername());
+
+                // pass the profile URL to the intent
+                launchProfileDetails.putExtra("profileUrl", user.getProfileURL());
+
+                startActivity(launchProfileDetails);
+            }
+        });
     }
 
     /**
@@ -61,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
             if (urls.length < 1 || urls[0] == null) {
                 return null;
             }
-            List<User> result = QueryUtilities.fetchUserData(urls[0]);
+            List<User> result = QueryUtils.fetchUserData(urls[0]);
             return result;
         }
 

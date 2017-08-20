@@ -23,19 +23,19 @@ import java.util.List;
  * Helper methods related to requesting and receiving User data from Github
  */
 
-public final class QueryUtilities {
+public final class QueryUtils {
     /**
      * Tag for log messages
      */
-    public static final String LOG_TAG = QueryUtilities.class.getSimpleName();
+    public static final String LOG_TAG = QueryUtils.class.getSimpleName();
 
     /**
-     * Create a private constructor because no one should ever create a {@link QueryUtilities} object.
+     * Create a private constructor because no one should ever create a {@link QueryUtils} object.
      * This class is only meant to hold static variables and methods, which can be accessed
      * directly from the class name QueryUtils (and an object instance of QueryUtils is not needed).
      */
 
-    private QueryUtilities() {
+    private QueryUtils() {
 
     }
 
@@ -164,7 +164,10 @@ public final class QueryUtilities {
                 // extract the username from the key login
                 String login = currentUser.getString("login");
 
-                User user = new User(login);
+                // extract the user profile url from the key
+                String profileURL = currentUser.getString("html_url");
+
+                User user = new User(login, profileURL);
                 users.add(user);
             }
         }catch (JSONException e){

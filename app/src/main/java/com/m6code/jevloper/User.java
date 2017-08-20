@@ -8,10 +8,12 @@ package com.m6code.jevloper;
 public class User {
 
     private String mUsername;
+    private String mProfileURL;
 
-    public  User(String username){
+    public  User(String username, String profileURL){
 
         mUsername = username;
+        mProfileURL = profileURL;
     }
 
     /**
@@ -20,5 +22,13 @@ public class User {
      */
     public String getUsername(){
         return mUsername;
+    }
+
+    /**
+     * Get the profile url of the user
+     * @return the profile URL
+     */
+    public String getProfileURL(){
+        return mProfileURL;
     }
 }
