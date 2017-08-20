@@ -1,7 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/default_background"
+    android:orientation="horizontal"
+    android:paddingEnd="16dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingStart="16dp"
+    android:paddingTop="16dp">
+
+    <ImageView
+        android:id="@+id/profile_image_thumb"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:background="@drawable/profile_circle"
+        android:src="@drawable/ic_silhouette" />
+
+    <de.morrox.fontinator.FontTextView
+        android:id="@+id/tv_username"
+        android:layout_width="0dp"
+        android:layout_height="96dp"
+        android:layout_weight="1"
+        app:font="Helvetica-Light.ttf"
+        android:gravity="center"
+        android:paddingTop="32dp"
+        app:letterSpace="1.2"
+        android:text="Username"
+        android:textSize="48sp"
+        tools:ignore="MissingPrefix" />
 
 </LinearLayout>

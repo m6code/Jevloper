@@ -9,8 +9,8 @@
     <color name="icons">#FFFFFF</color>
     <color name="divider">#BDBDBD</color>
     <!--My colors-->
-    <color name="default_backgroud">#F2F9F9</color>
-    <color name="image_backgroud">#DAEDEF</color>
+    <color name="default_background">#F2F9F9</color>
+    <color name="image_background">#DAEDEF</color>
     <color name="silhouette_color">#688E93</color>
     <color name="color_icons">#3E612E</color>
 </resources>
