@@ -14,22 +14,26 @@
 
     <ImageView
         android:id="@+id/profile_image_thumb"
-        android:layout_width="96dp"
-        android:layout_height="96dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:background="@drawable/profile_circle"
         android:src="@drawable/ic_silhouette" />
 
     <de.morrox.fontinator.FontTextView
         android:id="@+id/tv_username"
         android:layout_width="0dp"
-        android:layout_height="96dp"
+        android:layout_height="60dp"
         android:layout_weight="1"
         app:font="Helvetica-Light.ttf"
-        android:gravity="center"
-        android:paddingTop="32dp"
-        app:letterSpace="1.2"
-        android:text="Username"
-        android:textSize="48sp"
+        android:paddingStart="32dp"
+        android:paddingEnd="32dp"
+        android:gravity="start"
+        android:paddingTop="20dp"
+        app:letterSpace="0.2"
+        tools:text="Username"
+        android:textSize="22sp"
         tools:ignore="MissingPrefix" />
 
 </LinearLayout>
