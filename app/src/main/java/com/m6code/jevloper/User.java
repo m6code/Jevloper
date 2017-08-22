@@ -9,11 +9,13 @@ public class User {
 
     private String mUsername;
     private String mProfileURL;
+    private String mProfileImage;
 
-    public  User(String username, String profileURL){
+    public  User(String username, String profileURL, String profileImage){
 
         mUsername = username;
         mProfileURL = profileURL;
+        mProfileImage = profileImage;
     }
 
     /**
@@ -30,5 +32,9 @@ public class User {
      */
     public String getProfileURL(){
         return mProfileURL;
+    }
+
+    public String getProfileImage(){
+        return mProfileImage;
     }
 }

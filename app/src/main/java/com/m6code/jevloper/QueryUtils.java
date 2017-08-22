@@ -167,7 +167,10 @@ public final class QueryUtils {
                 // extract the user profile url from the key
                 String profileURL = currentUser.getString("html_url");
 
-                User user = new User(login, profileURL);
+                // extract the user profile image url from the avatar_url key
+                String profileImage = currentUser.getString("avatar_url");
+
+                User user = new User(login, profileURL, profileImage);
                 users.add(user);
             }
         }catch (JSONException e){

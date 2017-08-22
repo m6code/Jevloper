@@ -14,34 +14,49 @@
         android:id="@+id/imageView_profile_image"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="3"
+        android:layout_weight="10"
         android:background="@drawable/profile_square"
         app:srcCompat="@drawable/ic_silhouette_profile_details" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:clickable="true"
+        app:fabSize="auto"
+        app:srcCompat="@android:drawable/ic_menu_share" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="8dp"
         android:layout_weight="1"
         android:orientation="vertical">
 
-        <TextView
+
+        <de.morrox.fontinator.FontTextView
             android:id="@+id/textView_username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Username"
-            android:textSize="32sp" />
+            android:layout_gravity="start"
+            android:textSize="32sp"
+            app:font="Helvetica-Bold.ttf"
+            tools:text="Username" />
 
-        <TextView
+
+        <de.morrox.fontinator.FontTextView
             android:id="@+id/textView_profile_url"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="16dp"
-            android:text="profile url"
-            android:textSize="22sp" />
+            android:layout_gravity="start"
+            android:layout_marginTop="18dp"
+            android:textColor="@color/color_icons"
+            android:textSize="22sp"
+            app:font="Helvetica-Light.ttf"
+            tools:text="profile url" />
+
     </LinearLayout>
 
     <Button
@@ -49,5 +64,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Share" />
+        android:background="@color/colorAccent"
+        android:text="Share"
+        android:textColor="@color/default_background" />
 </LinearLayout>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/default_background"
     android:orientation="horizontal"
     android:paddingEnd="16dp"
@@ -16,8 +16,8 @@
         android:id="@+id/profile_image_thumb"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
         android:background="@drawable/profile_circle"
         app:srcCompat="@drawable/ic_silhouette" />
 
@@ -26,14 +26,14 @@
         android:layout_width="0dp"
         android:layout_height="60dp"
         android:layout_weight="1"
-        app:font="Helvetica-Light.ttf"
-        android:paddingStart="32dp"
-        android:paddingEnd="32dp"
         android:gravity="start"
+        android:paddingEnd="32dp"
+        android:paddingStart="32dp"
         android:paddingTop="20dp"
-        app:letterSpace="0.2"
-        tools:text="Username"
         android:textSize="22sp"
-        tools:ignore="MissingPrefix" />
+        app:font="Helvetica-Light.ttf"
+        app:letterSpace="0.2"
+        tools:ignore="MissingPrefix"
+        tools:text="Username" />
 
 </LinearLayout>

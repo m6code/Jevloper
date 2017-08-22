@@ -7,7 +7,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -40,6 +43,15 @@ public class UserAdapter extends ArrayAdapter<User> {
         TextView tvUsername = (TextView)listItemView.findViewById(R.id.tv_username);
         // Set the Text for the current user
         tvUsername.setText(currentUser.getUsername());
+
+        /* Find the user profile thumbnail ImageView and set the appropriate user image */
+        // Find the ImageView
+        ImageView userThumb = (ImageView) listItemView.findViewById(R.id.profile_image_thumb);
+
+        Picasso.with(getContext())
+                .load(currentUser.getProfileImage())
+                .resize(60,60)
+                .into(userThumb);
 
         return listItemView;
     }
