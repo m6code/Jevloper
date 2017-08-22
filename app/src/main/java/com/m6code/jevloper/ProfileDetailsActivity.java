@@ -1,13 +1,17 @@
 package com.m6code.jevloper;
 
 import android.content.Intent;
+import android.graphics.Picture;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 public class ProfileDetailsActivity extends AppCompatActivity {
 
@@ -22,7 +26,7 @@ public class ProfileDetailsActivity extends AppCompatActivity {
         final Intent receiver = getIntent();
 
         /* finds and set the username on the username TextView*/
-        // Get the username from the MainActivity intentExtras
+        // Get/Receive the username from the MainActivity intentExtras
         String username = receiver.getStringExtra("username");
         // Find the username TextView from the activity_profile_details.xml layout
         TextView tvUsername = (TextView) findViewById(R.id.textView_username);
@@ -36,6 +40,16 @@ public class ProfileDetailsActivity extends AppCompatActivity {
         TextView tvProfileURL = (TextView) findViewById(R.id.textView_profile_url);
         // Set the Text from the on the TextView
         tvProfileURL.setText(profileURL);
+
+        /* Find and Set the appropriate user profile Image */
+        // Receive the profile image URL from the MainActivity intentExtras
+        String profileImageURL = receiver.getStringExtra("profileImageUrl");
+        // Find the profile ImageView from the activity_profile_details.xml layout
+        ImageView ivProfileImage = (ImageView)findViewById(R.id.imageView_profile_image);
+        // Load and Set the profile image from the internet using Picasso lib
+        Picasso.with(this)
+                .load(profileImageURL)
+                .into(ivProfileImage);
 
         /*Set on click listener on the profile URL textView to launch the user profile*/
         tvProfileURL.setOnClickListener(new View.OnClickListener() {
