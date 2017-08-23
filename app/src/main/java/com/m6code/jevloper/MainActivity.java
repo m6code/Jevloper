@@ -66,6 +66,9 @@ public class MainActivity extends AppCompatActivity {
                 // Pass the profile Image URL to the intent
                 launchProfileDetails.putExtra("profileImageUrl", user.getProfileImage());
 
+                // Pass the user profile JSON url to the intent
+                launchProfileDetails.putExtra("jsonURL", user.getProfileJsonURL());
+
                 startActivity(launchProfileDetails);
             }
         });

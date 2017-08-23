@@ -1,7 +1,6 @@
 package com.m6code.jevloper;
 
 import android.content.Intent;
-import android.graphics.Picture;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -24,6 +23,9 @@ public class ProfileDetailsActivity extends AppCompatActivity {
 
         // Create a variable to receive intentExtras from the MainActivity
         final Intent receiver = getIntent();
+
+        // Receives the profile JSON URL from the MainActivity
+        final String jsonURL = receiver.getStringExtra("jsonURL");
 
         /* finds and set the username on the username TextView*/
         // Get/Receive the username from the MainActivity intentExtras
@@ -63,12 +65,18 @@ public class ProfileDetailsActivity extends AppCompatActivity {
 
         /* Find the share button and add onClickListener to share user profile*/
         // Find the button
-        Button btShare = (Button) findViewById(R.id.button_share);
+        Button btMoreDetails = (Button) findViewById(R.id.button_more_details);
         // Set onClickListener on the button to launch Share Intent
-        btShare.setOnClickListener(new View.OnClickListener() {
+        btMoreDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                shareUser(receiver);
+                // create intent to launch More profile details
+                Intent moreDetails = new Intent(ProfileDetailsActivity.this, ProfileDetailsMore.class);
+
+                // Pass the user profile JSON url to the intent
+                moreDetails.putExtra("jsonURL", jsonURL);
+
+                startActivity(moreDetails);
             }
         });
 

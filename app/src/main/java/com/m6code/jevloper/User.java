@@ -10,12 +10,14 @@ public class User {
     private String mUsername;
     private String mProfileURL;
     private String mProfileImage;
+    private String mProfileJsonURL;
 
-    public  User(String username, String profileURL, String profileImage){
+    public  User(String username, String profileURL, String profileImage, String profileJsonURL){
 
         mUsername = username;
         mProfileURL = profileURL;
         mProfileImage = profileImage;
+        mProfileJsonURL = profileJsonURL;
     }
 
     /**
@@ -34,7 +36,15 @@ public class User {
         return mProfileURL;
     }
 
+    /**
+     * Get the profile image url
+     * @return the profile image URL
+     */
     public String getProfileImage(){
         return mProfileImage;
+    }
+
+    public String getProfileJsonURL(){
+        return mProfileJsonURL;
     }
 }

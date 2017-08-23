@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">Jevloper</string>
+    <string name="at">\u0040</string>
+    <string name="username">Username</string>
+    <string name="full_name">Full Name</string>
+    <string name="github_url">http://www.github.com/username</string>
+    <string name="followers">Followers</string>
+    <string name="followers_count">0</string>
+    <string name="following">Following</string>
+    <string name="following_count">0</string>
+    <string name="github_info">Android and Web Developer</string>
+    <string name="repos">Repos</string>
+    <string name="moreDetails">View More</string>
+    <string name="repos_count">0</string>
 </resources>

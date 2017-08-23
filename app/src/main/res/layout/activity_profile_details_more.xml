@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context="com.m6code.jevloper.ProfileDetailsMore">
+
+    <ImageView
+        android:id="@+id/imageView_profile_image"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:background="@drawable/profile_square"
+        app:srcCompat="@drawable/ic_silhouette_profile_details" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <de.morrox.fontinator.FontTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:text="@string/at"
+            android:textColor="@color/color_icons"
+            android:textSize="24sp" />
+
+        <de.morrox.fontinator.FontTextView
+            android:id="@+id/textView_profile_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="16dp"
+            android:text="@string/username"
+            android:textSize="24sp"
+            app:font="Helvetica-Bold.ttf" />
+
+        <de.morrox.fontinator.FontTextView
+            android:id="@+id/textView_profile_name_full"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:text="@string/full_name"
+            android:textSize="20sp"
+            app:font="Helvetica-Light.ttf" />
+
+    </LinearLayout>
+
+    <de.morrox.fontinator.FontTextView
+        android:id="@+id/textView_user_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        tools:text="location"
+        android:textSize="20sp"
+        app:font="Helvetica-Light.ttf" />
+
+    <de.morrox.fontinator.FontTextView
+        android:id="@+id/textView_user_profile_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/github_info"
+        android:textSize="20sp"
+        app:font="Helvetica-LightOblique.ttf" />
+
+        <de.morrox.fontinator.FontTextView
+            android:id="@+id/textView_user_profile_url"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:autoLink="web"
+            android:layout_gravity="center_horizontal"
+            android:clickable="true"
+            android:text="@string/github_url"
+            android:textSize="24sp"
+            app:font="Helvetica-Light.ttf" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:layout_weight="2"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <de.morrox.fontinator.FontTextView
+                android:id="@+id/tv_followers_count"
+                style="@style/followStyle"
+                android:text="@string/followers_count"
+                app:font="Helvetica-Bold.ttf" />
+
+            <de.morrox.fontinator.FontTextView
+                style="@style/followStyle"
+                android:text="@string/followers"
+                android:textSize="20sp"
+                app:font="Helvetica-Light.ttf" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <de.morrox.fontinator.FontTextView
+                android:id="@+id/tv_following_count"
+                style="@style/followStyle"
+                android:text="@string/following_count"
+                app:font="Helvetica-Bold.ttf" />
+
+            <de.morrox.fontinator.FontTextView
+                style="@style/followStyle"
+                android:text="@string/following"
+                android:textSize="20sp"
+                app:font="Helvetica-Light.ttf" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="end"
+            android:orientation="vertical">
+
+            <de.morrox.fontinator.FontTextView
+                android:id="@+id/tv_repo_count"
+                style="@style/followStyle"
+                android:text="@string/repos_count"
+                app:font="Helvetica-Bold.ttf" />
+
+            <de.morrox.fontinator.FontTextView
+                style="@style/followStyle"
+                android:text="@string/repos"
+                android:textSize="20sp"
+                app:font="Helvetica-Light.ttf" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/floatingActionButton2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:clickable="true"
+        app:fabSize="mini"
+        app:srcCompat="@android:drawable/ic_menu_share" />
+
+
+</LinearLayout>
