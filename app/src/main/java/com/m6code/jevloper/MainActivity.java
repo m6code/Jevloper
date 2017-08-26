@@ -2,8 +2,11 @@ package com.m6code.jevloper;
 
 import android.app.LoaderManager;
 import android.app.LoaderManager.LoaderCallbacks;
+import android.content.Context;
 import android.content.Intent;
 import android.content.Loader;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -49,6 +52,8 @@ public class MainActivity extends AppCompatActivity
 
         // Find the TextView
         onErrorTextView = (TextView) findViewById(R.id.textView_on_error);
+        // Set the EmptyView for the listView
+        userListView.setEmptyView(onErrorTextView);
 
         // Find the ProgressBar
         onLoading = (ProgressBar) findViewById(R.id.progressBar);
@@ -59,14 +64,6 @@ public class MainActivity extends AppCompatActivity
         // Set the adapter on the {@link ListView}
         // so the list can be populated in the user interface
         userListView.setAdapter(mAdapter);
-
-        // Get reference to the loaderManager in order to interact with loaders
-        LoaderManager loaderManager = getLoaderManager();
-
-        // Initialize the loader. Pass in the int ID constant defined above and pass in null for
-        // the bundle. Pass in this activity for the LoaderCallbacks parameter (which is valid
-        // because this activity implements the LoaderCallbacks interface).
-        loaderManager.initLoader(LOADER_ID, null, this);
 
         userListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -92,6 +89,30 @@ public class MainActivity extends AppCompatActivity
                 startActivity(launchProfileDetails);
             }
         });
+
+        // get reference to the connectivity manager to check network state
+        ConnectivityManager connectivityManager = (ConnectivityManager)
+                getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        // Get the current network details
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+
+        // Check if network is available then fetch data
+        if (networkInfo !=null && networkInfo.isConnectedOrConnecting()){
+            // Get reference to the loaderManager in order to interact with loaders
+            LoaderManager loaderManager = getLoaderManager();
+
+            // Initialize the loader. Pass in the int ID constant defined above and pass in null for
+            // the bundle. Pass in this activity for the LoaderCallbacks parameter (which is valid
+            // because this activity implements the LoaderCallbacks interface).
+            loaderManager.initLoader(LOADER_ID, null, this);
+        }else{
+            // Display error, Hide progressBar
+            onLoading.setVisibility(View.GONE);
+
+            // Update the textView to show error message
+            onErrorTextView.setText(R.string.no_internet);
+        }
     }
 
 
@@ -106,13 +127,16 @@ public class MainActivity extends AppCompatActivity
         // Hides the progressBar
         onLoading.setVisibility(View.GONE);
 
+        // Set textView to show no user found if server returns no result
+        onErrorTextView.setText(R.string.no_user_found);
+
         // Clears the adapter of previous user data
         mAdapter.clear();
 
         // If there is a valid list of {@link User}s, then add them to the adapter data
         // set, which will trigger the ListView to update.
         if (data != null && !data.isEmpty()) {
-            mAdapter.addAll(data);
+           mAdapter.addAll(data);
         }
 
     }
