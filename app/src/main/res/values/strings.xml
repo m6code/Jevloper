@@ -12,4 +12,7 @@
     <string name="repos">Repos</string>
     <string name="moreDetails">View More</string>
     <string name="repos_count">0</string>
+
+    <string name="no_internet">No Internet Connection</string>
+    <string name="no_user_found">No User Found</string>
 </resources>

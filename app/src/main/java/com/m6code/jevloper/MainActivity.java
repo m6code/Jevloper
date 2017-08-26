@@ -7,6 +7,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +33,9 @@ public class MainActivity extends AppCompatActivity {
      * Adapter for the list of github users
      */
     private UserAdapter mAdapter;
+    private TextView onErrorTextView;
+    private ProgressBar onLoading;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +44,12 @@ public class MainActivity extends AppCompatActivity {
 
         // Find a reference to the {@link ListView} from the activity_main layout
         ListView userListView = (ListView) findViewById(R.id.list);
+
+        // Find the TextView
+        onErrorTextView = (TextView)findViewById(R.id.textView_on_error);
+
+        // Find the ProgressBar
+        onLoading = (ProgressBar)findViewById(R.id.progressBar);
 
         // Create a new adapter that takes an empty list of users as input
         mAdapter = new UserAdapter(this, new ArrayList<User>());
@@ -102,6 +115,9 @@ public class MainActivity extends AppCompatActivity {
 
             // Clears the adapter of previous user data
             mAdapter.clear();
+
+            // Hides the progressBar
+            onLoading.setVisibility(View.GONE);
 
             // If there is a valid list of {@link User}s, then add them to the adapter data
             // set, which will trigger the ListView to update.
