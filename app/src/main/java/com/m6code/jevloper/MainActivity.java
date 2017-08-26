@@ -1,7 +1,9 @@
 package com.m6code.jevloper;
 
+import android.app.LoaderManager;
+import android.app.LoaderManager.LoaderCallbacks;
 import android.content.Intent;
-import android.os.AsyncTask;
+import android.content.Loader;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -10,12 +12,11 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity
+        implements LoaderCallbacks<List<User>>{
 
     // create the log tag to log errors to console
     public static final String LOG_TAG = MainActivity.class.getName();
@@ -35,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     private UserAdapter mAdapter;
     private TextView onErrorTextView;
     private ProgressBar onLoading;
+    private static final int LOADER_ID = 1;
 
 
     @Override
@@ -46,10 +48,10 @@ public class MainActivity extends AppCompatActivity {
         ListView userListView = (ListView) findViewById(R.id.list);
 
         // Find the TextView
-        onErrorTextView = (TextView)findViewById(R.id.textView_on_error);
+        onErrorTextView = (TextView) findViewById(R.id.textView_on_error);
 
         // Find the ProgressBar
-        onLoading = (ProgressBar)findViewById(R.id.progressBar);
+        onLoading = (ProgressBar) findViewById(R.id.progressBar);
 
         // Create a new adapter that takes an empty list of users as input
         mAdapter = new UserAdapter(this, new ArrayList<User>());
@@ -58,8 +60,13 @@ public class MainActivity extends AppCompatActivity {
         // so the list can be populated in the user interface
         userListView.setAdapter(mAdapter);
 
-        UserAsyncTask userTask = new UserAsyncTask();
-        userTask.execute(USER_DATA_REQUEST_URL);
+        // Get reference to the loaderManager in order to interact with loaders
+        LoaderManager loaderManager = getLoaderManager();
+
+        // Initialize the loader. Pass in the int ID constant defined above and pass in null for
+        // the bundle. Pass in this activity for the LoaderCallbacks parameter (which is valid
+        // because this activity implements the LoaderCallbacks interface).
+        loaderManager.initLoader(LOADER_ID, null, this);
 
         userListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -87,43 +94,32 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    /**
-     * {@link AsyncTask} to perform the network request on a background thread and then update
-     * the User Interface with the list of users in the response.
-     */
-    private class UserAsyncTask extends AsyncTask<String, Void, List<User>> {
-        /**
-         * This method runs on a background thread and performs the network request
-         * and returns a list of {@link User}s
-         */
-        @Override
-        protected List<User> doInBackground(String... urls) {
-            // Don't perform the request if no URLs is provided or if the 1st URL is null
-            if (urls.length < 1 || urls[0] == null) {
-                return null;
-            }
-            List<User> result = QueryUtils.fetchUserData(urls[0]);
-            return result;
+
+    @Override
+    public Loader<List<User>> onCreateLoader(int id, Bundle args) {
+        // Create new loader from the giver URL
+        return new UserLoader(this, USER_DATA_REQUEST_URL);
+    }
+
+    @Override
+    public void onLoadFinished(Loader<List<User>> loader, List<User> data) {
+        // Hides the progressBar
+        onLoading.setVisibility(View.GONE);
+
+        // Clears the adapter of previous user data
+        mAdapter.clear();
+
+        // If there is a valid list of {@link User}s, then add them to the adapter data
+        // set, which will trigger the ListView to update.
+        if (data != null && !data.isEmpty()) {
+            mAdapter.addAll(data);
         }
 
-        /**
-         * This method runs on the main UI thread after the background and receives an input return
-         * value from the doInBackground() method
-         */
-        @Override
-        protected void onPostExecute(List<User> data) {
+    }
 
-            // Clears the adapter of previous user data
-            mAdapter.clear();
-
-            // Hides the progressBar
-            onLoading.setVisibility(View.GONE);
-
-            // If there is a valid list of {@link User}s, then add them to the adapter data
-            // set, which will trigger the ListView to update.
-            if (data !=null && !data.isEmpty()){
-                mAdapter.addAll(data);
-            }
-        }
+    @Override
+    public void onLoaderReset(Loader<List<User>> loader) {
+        // Clear existing data
+        mAdapter.clear();
     }
 }
