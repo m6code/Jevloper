@@ -72,18 +72,11 @@ public class MainActivity extends AppCompatActivity
                 User user = mAdapter.getItem(i);
                 // Create new intent to launchProfileDetails
                 Intent launchProfileDetails = new Intent(MainActivity.this,
-                        ProfileDetailsActivity.class);
-
-                // pass the username to the intent
-                launchProfileDetails.putExtra("username", user.getUsername());
-
-                // pass the profile URL to the intent
-                launchProfileDetails.putExtra("profileUrl", user.getProfileURL());
-
-                // Pass the profile Image URL to the intent
-                launchProfileDetails.putExtra("profileImageUrl", user.getProfileImage());
+                        ProfileDetailsMore.class);
 
                 // Pass the user profile JSON url to the intent
+                // this returns a JSON response which is then transverse
+                // in the ProfileDetailsMore activity
                 launchProfileDetails.putExtra("jsonURL", user.getProfileJsonURL());
 
                 startActivity(launchProfileDetails);

@@ -40,7 +40,7 @@ public class ProfileDetailsMore extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_details_more);
 
-        //Create intent to receive intent extras from the ProfileDetailsActivity.java
+        //Create intent to receive intent extras from the MainActivity.java
         Intent receiver = getIntent();
 
         // Receives string from intent
@@ -126,12 +126,19 @@ public class ProfileDetailsMore extends AppCompatActivity {
 
                 // Extract the user full name
                 String fullName = userDetailsObject.getString("name");
-                tvFullName.setText(fullName); // Set the fullName on the TextView
+                // Check if the user didn't provide their full name
+                if(fullName.equals("null")){
+                    tvFullName.setVisibility(View.GONE); // Hide the view
+                }else {
+                    tvFullName.setText(fullName); // Set the fullName on the TextView
+                }
+
 
                 // Extract the user bio
                 String userBio = userDetailsObject.getString("bio");
+                // check if user didn't provide their bio
                 if (userBio.equals("null")) {
-                    tvBio.setVisibility(View.GONE);
+                    tvBio.setVisibility(View.GONE); // hide bio TextView
                 } else {
                     tvBio.setText(userBio);
                 }

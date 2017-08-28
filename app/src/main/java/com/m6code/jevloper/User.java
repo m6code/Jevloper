@@ -44,6 +44,10 @@ public class User {
         return mProfileImage;
     }
 
+    /**
+     * Get the profileJsonURL
+     * @return profile JSON URL
+     */
     public String getProfileJsonURL(){
         return mProfileJsonURL;
     }
